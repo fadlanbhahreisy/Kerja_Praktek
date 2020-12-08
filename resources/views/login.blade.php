@@ -33,10 +33,11 @@
                             </div>
 
                             <div class="card-body">
-                                <form method="POST" action="#" class="needs-validation" novalidate="">
+                                <form method="POST" action="login" class="needs-validation" novalidate="">
                                     <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
+                                        @csrf
+                                        <label for="nip">NIP</label>
+                                        <input id="nip" type="text" class="form-control" name="nip" tabindex="1" required autofocus>
                                         <div class="invalid-feedback">
                                             Please fill in your email
                                         </div>
@@ -58,8 +59,12 @@
                                             </div>
                                         </div>
                                     </div>
-
-
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                            Login
+                                        </button>
+                                    </div>
+                                </form>
 
                             </div>
                         </div>
