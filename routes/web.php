@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Cache\Console\ForgetCommand;
+use Illuminate\Contracts\Session\Session;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +22,7 @@ Route::get('/login', function () {
 });
 Route::post("/login", [UserController::class, 'login']);
 Route::get("/", [DashboardController::class, 'index']);
+Route::get('/logout', function () {
+    session()->forget('user');
+    return redirect('login');
+});
