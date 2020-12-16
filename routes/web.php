@@ -1,10 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DashboardController;
-use Illuminate\Cache\Console\ForgetCommand;
-use Illuminate\Contracts\Session\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +13,14 @@ use Illuminate\Contracts\Session\Session;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
+Route::get('/', function () {
+    return view('auth.login');
 });
-Route::post("/login", [UserController::class, 'login']);
-Route::get("/", [DashboardController::class, 'index']);
-Route::get('/logout', function () {
-    session()->forget('user');
-    return redirect('login');
-});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/kalab/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified', 'authbendahara'])->get('/bendahara/dashboard', function () {
+    return view('livewire.bendahara');
+})->name('bendahara.dashboard');
